@@ -1,0 +1,77 @@
+import java.util.*;
+
+class Product {
+    int price;
+    int quantity;
+    String name;
+
+    public Product(String name, int price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public String Name() {
+        return name;
+    }
+
+    public int Quantity() {
+        return quantity;
+    }
+
+    public int Price() {
+        return price;
+    }
+}
+
+public class PracticeProductManagementSystem {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        List<Product> products = new ArrayList<>();
+
+        while (true) {
+            System.out.println("1. Add product");
+            System.out.println("2. View details");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            int n = scan.nextInt();
+
+            switch (n) {
+                case 1:
+                    System.out.println("Enter the product name: ");
+                    scan.nextLine(); // Consume newline
+                    String name = scan.nextLine();
+                    System.out.println("Enter the product price: ");
+                    int price = scan.nextInt();
+                    System.out.println("Enter the quantity: ");
+                    int quantity = scan.nextInt();
+                    Product newProduct = new Product(name, price, quantity);
+                    products.add(newProduct);
+                    System.out.println("Product added successfully");
+                    break;
+
+                case 2:
+                    System.out.println("Product details");
+                    System.out.println("Enter the index value: ");
+                    int a = scan.nextInt();
+                    if (a >= 0 && a < products.size()) {
+                        Product product = products.get(a);
+                        System.out.println(product.Name());
+                        System.out.println(product.Price());
+                        System.out.println(product.Quantity());
+                    } else {
+                        System.out.println("Invalid choice");
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Exiting");
+                    scan.close();
+                    System.exit(0);
+
+                default:
+                    System.out.println("Invalid choice");
+            }
+        }
+    }
+}
